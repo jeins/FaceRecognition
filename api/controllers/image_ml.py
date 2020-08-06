@@ -7,7 +7,7 @@ from flask import Blueprint, request, redirect
 from functools import reduce
 
 from api.config import FACE_IMAGE_FOLDER, FACE_ENCODING_FILE, ALLOWED_EXTENSIONS, ML_TOLERANCE
-from api import response
+from api.helpers import response
 
 bp = Blueprint("user_recognition", __name__)
 ROUTE_URI = "/image-ml"
