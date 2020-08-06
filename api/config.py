@@ -6,3 +6,8 @@ FACE_ENCODING_FILE = os.path.join(APP_ROOT, 'static/face/encoding', 'dataset.dat
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 ML_TOLERANCE = 0.6
+
+DB_HOST = '0.0.0.0'
+DB_USER = 'root'
+DB_PASS = 'root'
+DB_NAME = 'face_detection'
