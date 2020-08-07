@@ -45,7 +45,6 @@ def db_insert(table, new_data, conditions = ''):
         fields = ','.join(list(new_data.keys()))
         values = helper.format_values_before_save(new_data.values())
         query = "INSERT INTO " + table + " (" + fields + ") VALUES (" + values + ") " + conditions
-
         result = cur.execute(query)
         conn.commit()
     except Exception as e:

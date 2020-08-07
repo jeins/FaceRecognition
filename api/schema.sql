@@ -11,7 +11,7 @@ CREATE TABLE users (
     phone_number VARCHAR(150) NOT NULL,
     city VARCHAR(150) NOT NULL,
     country VARCHAR(150) NOT NULL,
-    remove_after_14days INTEGER NOT NULL DEFAULT 0,
+    remove_after_days14 INTEGER NOT NULL DEFAULT 0,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -55,5 +55,16 @@ CREATE TABLE users_events (
 
     PRIMARY KEY (id),
     FOREIGN KEY (event_id) REFERENCES events (id),
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+CREATE TABLE users_dataset (
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    user_id VARCHAR(50) NOT NULL,
+    dataset_id TEXT NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
