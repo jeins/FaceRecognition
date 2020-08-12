@@ -6,7 +6,7 @@ from api.db import db_select, db_insert
 from api.services import image_ml
 
 URI = '/user/'
-REQUIRED_FIELDS = ["fullName", "email", "phoneNumber", "city", "country", "removeAfterDays14"]
+FIELDS = ["fullName", "email", "phoneNumber", "city", "country", "removeAfterDays14"]
 bp = Blueprint("user", __name__)
 
 @bp.route(URI + 'register', methods=['POST'])
@@ -14,7 +14,7 @@ def register():
     data = request.json
 
     # check if request valid based on required fields
-    if not helper.validate_request(REQUIRED_FIELDS, data):
+    if not helper.validate_request(FIELDS, data):
         return response.nok("missing some field")
 
     #check is email or phone number already exist
@@ -25,7 +25,7 @@ def register():
     #prepare data before input to db
     id = str(uuid.uuid4())
     new_user = { "id": id }
-    for field in REQUIRED_FIELDS:
+    for field in FIELDS:
         new_user[helper.camelcase_to_snakecase(field)] = data[field]
     
     #save data to db user
@@ -43,7 +43,7 @@ def train_face(user_id):
         user = db_select('SELECT * FROM users WHERE id="' + user_id + '"')
         if (len(user) == 0):
             return response.nok("user id not valid")
-        
+        print(request)
         #check is uploaded image valid
         if not is_uploaded_file_valid(request):
             return response.nok("uploaded file not valid")
@@ -94,9 +94,10 @@ def identify():
 
 
 def is_uploaded_file_valid(request):
+    print(request.files)
     if 'image' not in request.files:
         return False
-
+    
     file = request.files['image']
     if file.filename == '':
         return False

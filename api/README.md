@@ -9,6 +9,10 @@ Create a virtualenv and activate it
     $ python3 -m venv venv
     $ . venv/bin/activate
 
+Install project dependencies
+    
+    $ pip3 install -r api/requirements.txt
+
 Run
 ---
 
