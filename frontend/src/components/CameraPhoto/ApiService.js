@@ -11,9 +11,9 @@ export const uploadImage = async(image, userId) => {
     try{
         const result = await axios.post(url, data);
 
-        return result.data.valid;
+        return result.data;
     } catch(error) {
-        return false;
+        return {};
     }
 }
 

@@ -22,7 +22,7 @@ const App = () => {
     }
 
     const onClickRegister = () => {
-        setTitle("Daftar Muka");
+        setTitle("Daftar Diri");
         setShowRegisterForm(true);
     }
 
@@ -51,7 +51,7 @@ const App = () => {
 
                 { showCamera && ( <CameraPhoto mode={MODE_DETECT} /> ) }
                 
-                { showRegisterForm && ( <RegisterForm /> ) }
+                { showRegisterForm && ( <RegisterForm onBackToHome={onClearPage} /> ) }
             </ContainerPage>
         </>
     );

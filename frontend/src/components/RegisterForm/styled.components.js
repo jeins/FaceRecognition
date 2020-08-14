@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import LoadingOverlay from '../shared/LoadingOverlay';
 
-export const RegisterFormSection = styled(LoadingOverlay)`
+export const UserFormSection = styled(LoadingOverlay)`
     padding: 20px;
 `;
 
