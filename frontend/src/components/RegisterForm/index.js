@@ -5,14 +5,16 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import UserForm from './UserForm';
 import CameraPhoto from '../CameraPhoto';
+import { FinishDescription } from './styled.components';
 
 import { MODE_TRAIN } from '../CameraPhoto/const';
 
-const STEPS = ["Input User Data", "Add User Image"];
+import { TEXT } from '../text';
+
+const STEPS = Object.values(TEXT.REGISTER_STEP);
 
 const RegisterForm = ({ onBackToHome }) => {
     const [activeStep, setActiveStep] = useState(0);
@@ -43,12 +45,12 @@ const RegisterForm = ({ onBackToHome }) => {
                 ))}
             </Stepper>
             {activeStep === STEPS.length && (
-                <Paper square elevation={0} >
-                <Typography>Pendaftaran diri telah selesai.</Typography>
-                <Button onClick={onBackToHome} >
-                    Selesai
-                </Button>
-                </Paper>
+                <FinishDescription square elevation={0} >
+                    <Typography>{TEXT.REGISTER_STEP_FINISH_DESCRIPTION}</Typography>
+                    <Button onClick={onBackToHome} color="primary">
+                        {TEXT.REGISTER_STEP_FINISH_BUTTON}
+                    </Button>
+                </FinishDescription>
             )}
         </div>
     );

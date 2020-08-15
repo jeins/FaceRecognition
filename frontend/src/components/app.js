@@ -6,10 +6,10 @@ import { MODE_DETECT } from './CameraPhoto/const';
 import RegisterForm from './RegisterForm';
 import ContainerPage from './ContainerPage';
 
-const DEFAULT_TITLE = 'FaceDetector App';
+import { TEXT } from './text';
 
 const App = () => {
-    const [title, setTitle] = useState(DEFAULT_TITLE);
+    const [title, setTitle] = useState(TEXT.APP_TITLE);
     const [showCamera, setShowCamera] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [showUserData, setShowUserData] = useState(false);
@@ -17,17 +17,17 @@ const App = () => {
     const isDashboardVisible = !showCamera && !showRegisterForm && !showUserData;
 
     const onClickDetectFace = () => {
-        setTitle("Deteksi Data");
+        setTitle(TEXT.DASHBOARD_BUTTON_REGISTER_USER_IMAGE);
         setShowCamera(true);
     }
 
     const onClickRegister = () => {
-        setTitle("Daftar Diri");
+        setTitle(TEXT.DASHBOARD_BUTTON_REGISTER_USER_DATA);
         setShowRegisterForm(true);
     }
 
     const onClearPage = () => {
-        setTitle(DEFAULT_TITLE);
+        setTitle(TEXT.APP_TITLE);
         setShowCamera(false);
         setShowRegisterForm(false);
         setShowUserData(false);

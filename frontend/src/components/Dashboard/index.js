@@ -2,6 +2,8 @@ import React from 'react';
 
 import { DashboardSection, ButtonStyled } from './styled.components';
 
+import { TEXT } from '../text';
+
 const Dashboard = ({
     isVisible,
     onClickRegister,
@@ -14,7 +16,7 @@ const Dashboard = ({
             color="primary"
 
             onClick={onClickRegister}>
-            Daftar Diri
+            {TEXT.DASHBOARD_BUTTON_REGISTER_USER_DATA}
         </ButtonStyled>
 
         <ButtonStyled 
@@ -23,7 +25,7 @@ const Dashboard = ({
             color="secondary"
 
             onClick={onClickDetectFace}>
-            Deteksi Muka
+            {TEXT.DASHBOARD_BUTTON_REGISTER_USER_IMAGE}
         </ButtonStyled>
     </DashboardSection>
 );

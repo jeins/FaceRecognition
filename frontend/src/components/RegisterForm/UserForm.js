@@ -9,6 +9,8 @@ import { UserFormSection, FormStyled, ButtonStyled } from './styled.components';
 
 import { addUserData } from './ApiService';
 
+import { TEXT } from '../text';
+
 const UserForm = ({ onRegisterSuccess }) => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -75,7 +77,7 @@ const UserForm = ({ onRegisterSuccess }) => {
                 {
                     Object.keys(data)
                         .filter((id) => id !== 'removeAfterDays14')
-                        .map((id) => generateTextField(id, getLabel(id)))
+                        .map((id) => generateTextField(id, TEXT.REGISTER_USER_FORM[id.toUpperCase()]))
                 }
                 <FormControlLabel
                     className="CheckBox"
@@ -87,7 +89,7 @@ const UserForm = ({ onRegisterSuccess }) => {
                         color="primary"
                     />
                     }
-                    label="Hapus data setelah 14 hari."
+                    label={TEXT.REGISTER_USER_FORM.REMOVEAFTERDAYS14}
                 />
             </FormStyled>
             
@@ -99,7 +101,7 @@ const UserForm = ({ onRegisterSuccess }) => {
                 disabled={isButtonDisabled}
 
                 onClick={onSubmit}>
-                Register
+                {TEXT.REGISTER_BUTTON}
             </ButtonStyled>
 
         </UserFormSection>
