@@ -1,7 +1,10 @@
+import { initial } from "lodash";
+
 export const TEXT = {
     APP_TITLE: 'FaceDetector App',
     DASHBOARD_BUTTON_REGISTER_USER_DATA: 'Daftar Diri',
     DASHBOARD_BUTTON_REGISTER_USER_IMAGE: 'Deteksi Wajah',
+    DASHBOARD_BUTTON_SHOW_USER_DATA: 'Menampilkan Data Diri',
     REGISTER_USER_FORM: {
         FULLNAME: 'Nama Lengkap',
         EMAIL: 'Alamat Email',

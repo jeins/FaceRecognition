@@ -6,7 +6,7 @@ import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import UserForm from './UserForm';
+import RegisterUserForm from '../UserForm/RegisterUserForm';
 import CameraPhoto from '../CameraPhoto';
 import { FinishDescription } from './styled.components';
 
@@ -37,7 +37,7 @@ const RegisterForm = ({ onBackToHome }) => {
                         <StepLabel>{label}</StepLabel>
                         <StepContent>
                         
-                        { index === 0 && (<UserForm onRegisterSuccess={onRegisterSuccess} />)}
+                        { index === 0 && (<RegisterUserForm onRegisterSuccess={onRegisterSuccess} />)}
                         { index === 1 && (<CameraPhoto userId={userId} mode={MODE_TRAIN} onStepDone={onStepDone} />)}
 
                         </StepContent>

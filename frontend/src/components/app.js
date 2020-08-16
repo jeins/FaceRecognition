@@ -5,6 +5,7 @@ import CameraPhoto from './CameraPhoto';
 import { MODE_DETECT } from './CameraPhoto/const';
 import RegisterForm from './RegisterForm';
 import ContainerPage from './ContainerPage';
+import ShowUserData from './UserForm/ShowUserData';
 
 import { TEXT } from './text';
 
@@ -13,6 +14,7 @@ const App = () => {
     const [showCamera, setShowCamera] = useState(false);
     const [showRegisterForm, setShowRegisterForm] = useState(false);
     const [showUserData, setShowUserData] = useState(false);
+    const [userData, setUserData] = useState({});
 
     const isDashboardVisible = !showCamera && !showRegisterForm && !showUserData;
 
@@ -26,11 +28,19 @@ const App = () => {
         setShowRegisterForm(true);
     }
 
+    const onGetUserData = (data) => {
+        setShowCamera(false);
+        setUserData(data);
+        setShowUserData(true);
+        setTitle(TEXT.DASHBOARD_BUTTON_SHOW_USER_DATA);
+    }
+
     const onClearPage = () => {
         setTitle(TEXT.APP_TITLE);
         setShowCamera(false);
         setShowRegisterForm(false);
         setShowUserData(false);
+        setUserData({});
     }
 
     return (
@@ -49,9 +59,11 @@ const App = () => {
                     )
                 }
 
-                { showCamera && ( <CameraPhoto mode={MODE_DETECT} /> ) }
+                { showCamera && ( <CameraPhoto mode={MODE_DETECT} onGetUserData={onGetUserData} /> ) }
                 
                 { showRegisterForm && ( <RegisterForm onBackToHome={onClearPage} /> ) }
+
+                { showUserData && (<ShowUserData data={userData} />)}
             </ContainerPage>
         </>
     );

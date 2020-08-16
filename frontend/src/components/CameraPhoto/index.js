@@ -8,7 +8,12 @@ import { uploadImage, identifyImage } from './ApiService';
 import ErrorAlert from '../shared/ErrorAlert';
 import LoadingOverlay from '../shared/LoadingOverlay';
 
-const CameraPhoto = ({ mode, userId = '', onStepDone = null }) => {
+const CameraPhoto = ({
+    mode,
+    userId = '',
+    onStepDone = null,
+    onGetUserData = null,
+}) => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -18,9 +23,15 @@ const CameraPhoto = ({ mode, userId = '', onStepDone = null }) => {
 
         if(mode == MODE_DETECT) {
             const result = await identifyImage(dataUri);
+
             validate(result);
+
+            if(_.has(result, 'valid') && result.valid) {
+                onGetUserData(result.data);
+            }
         } else if(mode == MODE_TRAIN) {
             const result = await uploadImage(dataUri, userId);
+            
             validate(result);
             
             if(_.has(result, 'valid') && result.valid) {

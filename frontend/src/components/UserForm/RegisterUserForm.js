@@ -5,23 +5,17 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import ErrorAlert from '../shared/ErrorAlert';
-import { UserFormSection, FormStyled, ButtonStyled } from './styled.components';
+import { RegisterUserFormSection, FormStyled, ButtonStyled } from './styled.components';
 
 import { addUserData } from './ApiService';
 
+import { USER_FIELDS } from './const';
 import { TEXT } from '../text';
 
-const UserForm = ({ onRegisterSuccess }) => {
+const RegisterUserForm = ({ onRegisterSuccess }) => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState({
-        fullName: '', 
-        email: '', 
-        phoneNumber: '', 
-        city: '', 
-        country: '', 
-        removeAfterDays14: false,
-    });
+    const [data, setData] = useState(USER_FIELDS);
 
     const onChangeTextField = (id) => (event) => setData({
         ...data,
@@ -54,11 +48,7 @@ const UserForm = ({ onRegisterSuccess }) => {
         setLoading(false);
     }
 
-    const isButtonDisabled = Object.values(data).filter(d => d === '').length > 0
-
-    const getLabel = id => 
-        id.replace(/([A-Z])/g, ' $1')
-        .replace(/^./, function(str){ return str.toUpperCase(); })
+    const isButtonDisabled = Object.values(data).filter(d => d === '').length > 0;
 
     const generateTextField = (id, lable) => 
         (<TextField
@@ -71,7 +61,7 @@ const UserForm = ({ onRegisterSuccess }) => {
             onChange={onChangeTextField(id)} />);
 
     return (
-        <UserFormSection loading={loading}>
+        <RegisterUserFormSection loading={loading}>
             <ErrorAlert message={error} />
             <FormStyled>
                 {
@@ -104,8 +94,8 @@ const UserForm = ({ onRegisterSuccess }) => {
                 {TEXT.REGISTER_BUTTON}
             </ButtonStyled>
 
-        </UserFormSection>
+        </RegisterUserFormSection>
     );
 }
 
-export default UserForm;
+export default RegisterUserForm;
