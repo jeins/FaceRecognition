@@ -86,7 +86,10 @@ def identify():
             users_data = {}
             for d in users:
                 user_data = db_select('SELECT * FROM users WHERE id="' + d['user_id'] + '"')
-                users_data[d['user_id']] = user_data
+                user = {}
+                for f in user_data[0]:
+                    user[helper.snakecase_to_camelcase(f)] = user_data[0][f]
+                users_data[d['user_id']] = user
             
             return response.ok(users_data)
 
